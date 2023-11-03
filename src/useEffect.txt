@@ -1,0 +1,61 @@
+Um eemplo com useEffect com o mesmo padrão do formulário
+
+
+import { useState } from "react";
+
+function App() {
+  const[input, setInput] = useState('')
+  const [tarefas, setTarefas] = useState([
+    'Pagar contass'
+    'Estudar javascript'
+  ])
+
+  useEffect(() =>{
+    const tarefasStorage = localStorage.getItem('@tarefa)
+
+    if(tarefasStorage){
+        setTarefas(JSON.parse(tarefasStorage))
+    }
+  })
+
+  useEffect(() =>{
+    localStorage.setItem('@tarefa', JSON.stringify(tarefas))
+  }) [tarefas])
+
+  function handleRegister(e){
+    e.preventDefault()
+
+    setTarefas([...tarefas, input])
+    setInput('')
+    
+  }
+  return (
+    <div>
+      <h1>Cadastrando Usuário</h1>
+      <form onSubmit={handleRegister}>
+        <label>Nome da tarefa</label><br/>
+        <input 
+        placeholder="Digite uma tarefa"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}>
+        </input><br/>
+
+        
+        <button type="submit">Enviar</button>
+      </form>
+      <br/>
+      <br/>
+
+      <div>
+        <span> {user.nome}</span><br/>
+        <span>Idade: {user.idade}</span><br/>
+        <span>Email: {user.email}</span><br/>
+      </div>
+
+     
+      
+    </div>
+  );
+}
+
+export default App;
